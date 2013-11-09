@@ -1,0 +1,11 @@
+{{extend 'layout.html'}}
+<h1>Active Threads</h1>
+<h3> click to expand</h3>
+
+<ul>{{for concept in concepts:}}
+    {{=LI(A(concept.title, _href=URL('show', args=concept.id)))}}
+{{pass}}</ul>
+[ {{=A('create concept', _href=URL('create'))}} ]
+
+[ {{=A('search', _href=URL('search'))}} ]<br />
+<script type="text/javascript" src="shell.wav"></script>

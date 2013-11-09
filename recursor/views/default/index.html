@@ -1,0 +1,7 @@
+{{extend 'layout.html'}}
+<h1>Threads</h1>
+[ {{=A('search', _href=URL('search'))}} ]<br />
+<ul>{{for node in nodes:}}
+    {{=LI(A(node.title, _href=URL('show', args=node.id)))}} 
+{{pass}}</ul>
+[ {{=A('create node', _href=URL('create'))}} ]

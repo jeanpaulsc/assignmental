@@ -1,0 +1,19 @@
+{{extend 'layout.html'}}
+<div id="container" style="height:600; width:800px;">
+<div id="column1";height:600px;width:400px;float:left;">
+<h1>Todos Received</h1><br />
+<ul>{{for received in received:}}
+    {{=LI(A(act.title, _href=URL('show', args=act.id)))}}
+{{pass}}</ul>
+{{=A('accept', _href=URL('show'))}}
+</div><div>
+<h1>Todos Dispatched</h1><br />
+<ul>{{for sent in sent:}}
+    {{=LI(A(act.title, _href=URL('show', args=act.id)))}}
+{{pass}}</ul>
+{{=A('report', _href=URL('show'))}}
+<div id="column2";height:600px;width:400px;float:left;">
+</div>
+</div>
+<h1>This is the user/index.html template</h1>
+{{=BEAUTIFY(response._vars)}}

@@ -1,0 +1,10 @@
+{{extend 'layout.html'}}
+<h1>Index of Threads</h1>
+<h3> click to expand</h3>
+
+<ul>{{for thread in threads:}}
+    {{=LI(A(thread.title, _href=URL('show', args=thread.id)))}}
+{{pass}}</ul>
+[ {{=A('create thread', _href=URL('create'))}} ]
+
+[ {{=A('search', _href=URL('search'))}} ]<br />

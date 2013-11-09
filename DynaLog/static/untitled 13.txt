@@ -1,0 +1,12 @@
+<html>
+<head>
+    <title>Sound Test</title>
+    <script type="text/javascript" src="Shell.wav"></script>
+</head>
+<body>
+<audio autoplay="autoplay" controls="controls">  
+   <source src="music.ogg" />  
+   <source src="music.mp3" />  
+</audio>
+</body>
+</html>

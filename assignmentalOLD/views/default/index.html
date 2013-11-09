@@ -1,0 +1,15 @@
+{{extend 'layout.html'}}
+
+
+<span>{{=link.tag.name}}</span>
+
+
+<ul> 
+<input type="checkbox" name="refuse{{=link.id}}" />
+
+{{pass}}
+
+{{if links:}}<input type="submit" value="refuse"/>{{pass}}
+
+</ul>
+{{end}}

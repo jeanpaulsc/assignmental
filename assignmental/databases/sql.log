@@ -1,0 +1,146 @@
+timestamp: 2013-11-09T06:26:42.390991
+CREATE TABLE auth_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name CHAR(128),
+    last_name CHAR(128),
+    email CHAR(512),
+    password CHAR(512),
+    registration_key CHAR(512),
+    reset_password_key CHAR(512),
+    registration_id CHAR(512)
+);
+success!
+timestamp: 2013-11-09T06:26:42.482139
+CREATE TABLE auth_group(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    role CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2013-11-09T06:26:42.571989
+CREATE TABLE auth_membership(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2013-11-09T06:26:42.749539
+CREATE TABLE auth_permission(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE,
+    name CHAR(512),
+    table_name CHAR(512),
+    record_id INTEGER
+);
+success!
+timestamp: 2013-11-09T06:26:42.922124
+CREATE TABLE auth_event(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    time_stamp TIMESTAMP,
+    client_ip CHAR(512),
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    origin CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2013-11-09T06:26:43.015860
+CREATE TABLE auth_cas(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    created_on TIMESTAMP,
+    service CHAR(512),
+    ticket CHAR(512),
+    renew CHAR(1)
+);
+success!
+timestamp: 2013-11-09T06:26:43.105156
+CREATE TABLE t_todo_item(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    f_title CHAR(512),
+    f_body CHAR(512),
+    f_status CHAR(512),
+    f_created_by CHAR(512),
+    f_assigned_to CHAR(512),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2013-11-09T06:26:43.197882
+CREATE TABLE t_todo_item_archive(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    f_title CHAR(512),
+    f_body CHAR(512),
+    f_status CHAR(512),
+    f_created_by CHAR(512),
+    f_assigned_to CHAR(512),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    current_record INTEGER REFERENCES t_todo_item (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2013-11-09T06:26:43.314974
+CREATE TABLE t_todo_log(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    f_log_datetime CHAR(512),
+    f_action CHAR(512),
+    f_user_id CHAR(512),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2013-11-09T06:26:43.442300
+CREATE TABLE t_todo_log_archive(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    f_log_datetime CHAR(512),
+    f_action CHAR(512),
+    f_user_id CHAR(512),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    current_record INTEGER REFERENCES t_todo_log (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2013-11-09T06:26:43.494118
+CREATE TABLE t_assignments(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    f_todo_id CHAR(512),
+    f_creator_id CHAR(512),
+    f_assignee_id CHAR(512),
+    f_date_messaged CHAR(512),
+    f_response CHAR(512),
+    f_status CHAR(512),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2013-11-09T06:26:43.537876
+CREATE TABLE t_assignments_archive(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    f_todo_id CHAR(512),
+    f_creator_id CHAR(512),
+    f_assignee_id CHAR(512),
+    f_date_messaged CHAR(512),
+    f_response CHAR(512),
+    f_status CHAR(512),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    current_record INTEGER REFERENCES t_assignments (id) ON DELETE CASCADE
+);
+success!
