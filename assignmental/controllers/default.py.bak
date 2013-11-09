@@ -22,7 +22,7 @@ def todo_item_manage():
     form = SQLFORM.smartgrid(db.t_todo_item,onupdate=auth.archive)
     return locals()
     """
-    query = (db.t_todo_item.f_created_by == auth.user_id)
+    query = SQLFORM.(db.t_todo_item.f_created_by == auth.user_id)
     form = SQLFORM.grid(query)
  
     return dict(form=form)

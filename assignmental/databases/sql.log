@@ -144,3 +144,49 @@ CREATE TABLE t_assignments_archive(
     current_record INTEGER REFERENCES t_assignments (id) ON DELETE CASCADE
 );
 success!
+timestamp: 2013-11-09T11:45:54.562980
+ALTER TABLE auth_user ADD username CHAR(128);
+timestamp: 2013-11-09T11:45:54.610633
+ALTER TABLE auth_user ADD modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE;
+timestamp: 2013-11-09T11:45:54.613911
+ALTER TABLE auth_user ADD is_active CHAR(1);
+timestamp: 2013-11-09T11:45:54.619436
+ALTER TABLE auth_user ADD created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE;
+timestamp: 2013-11-09T11:45:54.625153
+ALTER TABLE auth_user ADD created_on TIMESTAMP;
+timestamp: 2013-11-09T11:45:54.628611
+ALTER TABLE auth_user ADD modified_on TIMESTAMP;
+success!
+timestamp: 2013-11-09T11:45:54.643552
+ALTER TABLE auth_group ADD modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE;
+timestamp: 2013-11-09T11:45:54.647774
+ALTER TABLE auth_group ADD is_active CHAR(1);
+timestamp: 2013-11-09T11:45:54.650744
+ALTER TABLE auth_group ADD created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE;
+timestamp: 2013-11-09T11:45:54.654340
+ALTER TABLE auth_group ADD created_on TIMESTAMP;
+timestamp: 2013-11-09T11:45:54.658448
+ALTER TABLE auth_group ADD modified_on TIMESTAMP;
+success!
+timestamp: 2013-11-09T11:45:54.672045
+ALTER TABLE auth_membership ADD is_active CHAR(1);
+timestamp: 2013-11-09T11:45:54.675646
+ALTER TABLE auth_membership ADD created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE;
+timestamp: 2013-11-09T11:45:54.679042
+ALTER TABLE auth_membership ADD created_on TIMESTAMP;
+timestamp: 2013-11-09T11:45:54.682616
+ALTER TABLE auth_membership ADD modified_on TIMESTAMP;
+timestamp: 2013-11-09T11:45:54.686374
+ALTER TABLE auth_membership ADD modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE;
+success!
+timestamp: 2013-11-09T11:45:54.702689
+ALTER TABLE auth_permission ADD modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE;
+timestamp: 2013-11-09T11:45:54.706616
+ALTER TABLE auth_permission ADD is_active CHAR(1);
+timestamp: 2013-11-09T11:45:54.709948
+ALTER TABLE auth_permission ADD created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE;
+timestamp: 2013-11-09T11:45:54.714057
+ALTER TABLE auth_permission ADD created_on TIMESTAMP;
+timestamp: 2013-11-09T11:45:54.717655
+ALTER TABLE auth_permission ADD modified_on TIMESTAMP;
+success!

@@ -8,24 +8,17 @@ def call(): return service()
 @auth.requires_login()
 def index():
     
-    offers = db(db.t_todo_item.f_assigned_to==auth.user).select()
+    offers = db(db.t_todo.assigned_to==auth_user).select(_f_email)
+    
     return dict(offers=offers)
 
 def error():
     return dict()
 
-    
-
 @auth.requires_login()
 def todo_item_manage():
-    """
     form = SQLFORM.smartgrid(db.t_todo_item,onupdate=auth.archive)
     return locals()
-    """
-    query = (db.t_todo_item.f_created_by == auth.user_id)
-    form = SQLFORM.grid(query)
- 
-    return dict(form=form)
 
 @auth.requires_login()
 def assignments_manage():
